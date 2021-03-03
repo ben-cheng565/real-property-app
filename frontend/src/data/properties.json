@@ -3,36 +3,48 @@
     "ID": 1,
     "Name": "Fantastic House",
     "Type": "House",
-    "Price": 150000
+    "Price": 150000,
+    "SellOrRent": 2,
+    "Image": "house-1.jpg"
   },
   {
     "ID": 2,
     "Name": "Heritage Property",
-    "Type": "Appartment",
-    "Price": 100000
+    "Type": "Flat",
+    "Price": 90000,
+    "SellOrRent": 1,
+    "Image": "house-2.jpg"
   },
   {
     "ID": 3,
     "Name": "Coze Home",
     "Type": "House",
-    "Price": 200000
+    "Price": 100000,
+    "SellOrRent": 2,
+    "Image": "house-3.jpg"
   },
   {
     "ID": 4,
     "Name": "Pearl Villa",
     "Type": "House",
-    "Price": 500000
+    "Price": 300000,
+    "SellOrRent": 1,
+    "Image": "house-4.jpg"
   },
   {
     "ID": 5,
-    "Name": "Pearl Villa",
-    "Type": "House",
-    "Price": 500000
+    "Name": "Modern Appartment",
+    "Type": "Flat",
+    "Price": 150000,
+    "SellOrRent": 2,
+    "Image": "house-5.jpg"
   },
   {
     "ID": 6,
-    "Name": "Pearl Villa",
+    "Name": "Luxury House",
     "Type": "House",
-    "Price": 500000
+    "Price": 500000,
+    "SellOrRent": 1,
+    "Image": "house-6.jpg"
   }
 ]

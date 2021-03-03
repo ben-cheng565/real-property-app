@@ -10,10 +10,13 @@ import { PropertyListComponent } from './property/property-list/property-list.co
 import { HousingService } from './service/housing.service';
 import { AddPropertyComponent } from './property/add-property/add-property.component';
 import { RouterModule, Routes } from '@angular/router';
+import { PropertyDetailComponent } from './property/property-detail/property-detail.component';
 
 const appRoutes: Routes = [
   { path: '', component: PropertyListComponent },
   { path: 'add-property', component: AddPropertyComponent },
+  { path: 'rent-property', component: PropertyListComponent },
+  { path: 'property-detail/:id', component: PropertyDetailComponent },
 ];
 
 @NgModule({
@@ -23,6 +26,7 @@ const appRoutes: Routes = [
     PropertyCardComponent,
     PropertyListComponent,
     AddPropertyComponent,
+    PropertyDetailComponent,
   ],
   imports: [
     BrowserModule,

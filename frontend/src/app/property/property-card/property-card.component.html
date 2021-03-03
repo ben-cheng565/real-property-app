@@ -1,9 +1,21 @@
 <div class="card">
   <div class="card-img-wrapper">
-    <img class="card-img-top" src="assets/image/house_default.png" />
+    <img
+      *ngIf="property.Image"
+      class="card-img-top"
+      src="assets/image/{{ property.Image }}"
+    />
+    <img
+      *ngIf="!property.Image"
+      class="card-img-top"
+      src="assets/image/house_default.png"
+    />
     <ul class="list-inline text-center member-icons animate">
       <li class="list-inline-item">
-        <button class="btn btn-primary btn-sm">
+        <button
+          class="btn btn-primary btn-sm"
+          routerLink="/property-detail/{{ property.ID }}"
+        >
           <i class="far fa-edit"></i>
         </button>
       </li>
