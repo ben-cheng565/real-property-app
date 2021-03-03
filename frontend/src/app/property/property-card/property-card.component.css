@@ -21,7 +21,7 @@
 
 .member-icons {
   position: absolute;
-  bottom: -20%;
+  bottom: -10%;
   left: 0;
   right: 0;
   margin: auto;
@@ -30,7 +30,7 @@
 
 .card-img-wrapper:hover .member-icons {
   bottom: 0;
-  opacity: 0.7;
+  opacity: 1;
 }
 
 .animate {
