@@ -3,30 +3,89 @@
     <div class="card m-auto">
       <div class="card-header">Sign Up</div>
       <div class="card-body">
-        <form>
+        <form [formGroup]="signupForm" (ngSubmit)="onSubmit()">
           <div class="form-group col-12">
             <label for="name" class="form-label">Name</label>
-            <input type="text" class="form-control" />
+            <input
+              type="text"
+              class="form-control"
+              formControlName="userName"
+            />
+            <span
+              *ngIf="!userName.valid && userName.touched"
+              class="error-block"
+            >
+              Please enter name
+            </span>
           </div>
 
           <div class="form-group col-12">
             <label for="email" class="form-label">Email</label>
-            <input type="email" class="form-control" />
+            <input type="email" class="form-control" formControlName="email" />
+            <span *ngIf="!email.valid && email.touched" class="error-block">
+              <span *ngIf="email.hasError('required')">
+                Please enter email address
+              </span>
+              <span *ngIf="email.hasError('email')">
+                Please enter a valid email
+              </span>
+            </span>
           </div>
 
           <div class="form-group col-12">
             <label for="password" class="form-label">Password</label>
-            <input type="password" class="form-control" />
+            <input
+              type="password"
+              class="form-control"
+              formControlName="password"
+            />
+            <span
+              *ngIf="!password.valid && password.touched"
+              class="error-block"
+            >
+              <span *ngIf="password.errors['required']">
+                Please enter password
+              </span>
+              <span *ngIf="password.errors.minlength">
+                Password should be at least 6 characters
+              </span>
+            </span>
           </div>
 
           <div class="form-group col-12">
             <label for="cPassword" class="form-label">Confirm Password</label>
-            <input type="password" class="form-control" />
+            <input
+              type="password"
+              class="form-control"
+              formControlName="confirmPassword"
+            />
+            <span
+              *ngIf="!confirmPassword.valid && confirmPassword.touched"
+              class="error-block"
+            >
+              <span *ngIf="confirmPassword.errors.required">
+                Please confirm password
+              </span>
+            </span>
+            <span
+              *ngIf="signupForm.hasError('notmatched') && confirmPassword.valid"
+              class="error-block"
+            >
+              Password not matched
+            </span>
           </div>
 
           <div class="form-group col-12">
             <label for="mobile" class="form-label">Mobile</label>
-            <input type="tel" class="form-control" />
+            <input type="tel" class="form-control" formControlName="mobile" />
+            <span *ngIf="!mobile.valid && mobile.touched" class="error-block">
+              <span *ngIf="mobile.hasError('required')">
+                Please enter mobile
+              </span>
+              <span *ngIf="mobile.errors.maxlength">
+                Mobile should be at most 10 characters
+              </span>
+            </span>
           </div>
 
           <div class="form-group col-12">
