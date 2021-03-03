@@ -12,12 +12,16 @@ import { HousingService } from './service/housing.service';
 import { AddPropertyComponent } from './property/add-property/add-property.component';
 import { RouterModule, Routes } from '@angular/router';
 import { PropertyDetailComponent } from './property/property-detail/property-detail.component';
+import { UserSigninComponent } from './user/user-signin/user-signin.component';
+import { UserSignupComponent } from './user/user-signup/user-signup.component';
 
 const appRoutes: Routes = [
   { path: '', component: PropertyListComponent },
   { path: 'add-property', component: AddPropertyComponent },
   { path: 'rent-property', component: PropertyListComponent },
   { path: 'property-detail/:id', component: PropertyDetailComponent },
+  { path: 'user/signin', component: UserSigninComponent },
+  { path: 'user/signup', component: UserSignupComponent },
 ];
 
 @NgModule({
@@ -28,6 +32,8 @@ const appRoutes: Routes = [
     PropertyListComponent,
     AddPropertyComponent,
     PropertyDetailComponent,
+    UserSigninComponent,
+    UserSignupComponent,
   ],
   imports: [
     BrowserModule,
