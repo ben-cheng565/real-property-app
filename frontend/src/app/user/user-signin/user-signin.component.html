@@ -1,1 +1,43 @@
-<p>user-signin works!</p>
+<div class="row">
+  <div class="col-6 m-auto">
+    <div class="card m-auto">
+      <div class="card-header">Sign In</div>
+      <div class="card-body">
+        <form #signinForm="ngForm" (ngSubmit)="onSignin(signinForm)">
+          <div class="form-group col-12">
+            <label for="name">Name</label>
+            <input
+              type="text"
+              class="form-control"
+              required
+              ngModel
+              name="userName"
+            />
+          </div>
+
+          <div class="form-group col-12">
+            <label for="password">Password</label>
+            <input
+              type="password"
+              class="form-control"
+              required
+              ngModel
+              name="password"
+            />
+          </div>
+
+          <div class="form-group col-12">
+            <button
+              [disabled]="!signinForm.valid"
+              type="submit"
+              class="btn btn-primary mr-3"
+            >
+              Login
+            </button>
+            <button type="reset" class="btn btn-secondary">Cancel</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

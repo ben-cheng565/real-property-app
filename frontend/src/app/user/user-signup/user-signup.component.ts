@@ -88,7 +88,7 @@ export class UserSignupComponent implements OnInit {
     this.userService.addUserToLocalStorage(this.userData());
     this.signupForm.reset();
 
-    this.alertify.success('Successfully signed up.');
+    this.alertify.success('Sign up successful');
   }
 
   userData(): User {
