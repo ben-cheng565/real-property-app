@@ -6,6 +6,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { User } from 'src/app/model/user';
+import { AlertifyService } from 'src/app/service/alertify.service';
 import { UserService } from 'src/app/service/user.service';
 
 @Component({
@@ -16,7 +17,11 @@ import { UserService } from 'src/app/service/user.service';
 export class UserSignupComponent implements OnInit {
   signupForm: FormGroup;
   user: User;
-  constructor(private fb: FormBuilder, private userService: UserService) {}
+  constructor(
+    private fb: FormBuilder,
+    private userService: UserService,
+    private alertify: AlertifyService
+  ) {}
 
   ngOnInit(): void {
     /* this.signupForm = new FormGroup(
@@ -82,6 +87,8 @@ export class UserSignupComponent implements OnInit {
     // this.user = Object.assign(this.user, this.signupForm.value);
     this.userService.addUserToLocalStorage(this.userData());
     this.signupForm.reset();
+
+    this.alertify.success('Successfully signed up.');
   }
 
   userData(): User {
