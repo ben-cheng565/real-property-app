@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { Router } from '@angular/router';
 import { AlertifyService } from 'src/app/service/alertify.service';
 import { AuthService } from 'src/app/service/auth.service';
 
@@ -9,7 +10,11 @@ import { AuthService } from 'src/app/service/auth.service';
   styleUrls: ['./user-signin.component.css'],
 })
 export class UserSigninComponent implements OnInit {
-  constructor(private auth: AuthService, private alertify: AlertifyService) {}
+  constructor(
+    private auth: AuthService,
+    private alertify: AlertifyService,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {}
 
@@ -19,6 +24,8 @@ export class UserSigninComponent implements OnInit {
     if (result) {
       localStorage.setItem('token', result.userName);
       this.alertify.success('Sign in successful');
+
+      this.router.navigate(['/']);
     } else {
       this.alertify.error('Sign in failed');
     }
