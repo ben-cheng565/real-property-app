@@ -1,5 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import {
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  Validators,
+} from '@angular/forms';
+import { UserService } from 'src/app/service/user.service';
 
 @Component({
   selector: 'app-user-signup',
@@ -8,10 +14,11 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 })
 export class UserSignupComponent implements OnInit {
   signupForm: FormGroup;
-  constructor() {}
+  user: any = {};
+  constructor(private fb: FormBuilder, private userService: UserService) {}
 
   ngOnInit(): void {
-    this.signupForm = new FormGroup(
+    /* this.signupForm = new FormGroup(
       {
         userName: new FormControl(null, Validators.required),
         email: new FormControl(null, [Validators.required, Validators.email]),
@@ -26,6 +33,21 @@ export class UserSignupComponent implements OnInit {
         ]),
       },
       this.passwordMatchingValidator
+    ); */
+
+    this.createForm();
+  }
+
+  createForm() {
+    this.signupForm = this.fb.group(
+      {
+        userName: [null, Validators.required],
+        email: [null, [Validators.required, Validators.email]],
+        password: [null, [Validators.required, Validators.minLength(6)]],
+        confirmPassword: [null, [Validators.required]],
+        mobile: [null, [Validators.required, Validators.maxLength(10)]],
+      },
+      { validators: this.passwordMatchingValidator }
     );
   }
 
@@ -56,6 +78,8 @@ export class UserSignupComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log(this.signupForm);
+    this.user = Object.assign(this.user, this.signupForm.value);
+    this.userService.addUserToLocalStorage(this.user);
+    this.signupForm.reset();
   }
 }

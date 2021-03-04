@@ -14,6 +14,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { PropertyDetailComponent } from './property/property-detail/property-detail.component';
 import { UserSigninComponent } from './user/user-signin/user-signin.component';
 import { UserSignupComponent } from './user/user-signup/user-signup.component';
+import { UserService } from './service/user.service';
 
 const appRoutes: Routes = [
   { path: '', component: PropertyListComponent },
@@ -43,7 +44,7 @@ const appRoutes: Routes = [
     ReactiveFormsModule,
     RouterModule.forRoot(appRoutes),
   ],
-  providers: [HousingService],
+  providers: [HousingService, UserService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

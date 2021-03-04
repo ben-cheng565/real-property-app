@@ -89,7 +89,13 @@
           </div>
 
           <div class="form-group col-12">
-            <button type="submit" class="btn btn-primary mr-3">Submit</button>
+            <button
+              [disabled]="!signupForm.valid"
+              type="submit"
+              class="btn btn-primary mr-3"
+            >
+              Submit
+            </button>
             <button type="reset" class="btn btn-secondary">Reset</button>
           </div>
         </form>
