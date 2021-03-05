@@ -10,7 +10,7 @@
       class="card-img-top"
       src="assets/image/house_default.png"
     />
-    <ul class="list-inline text-center member-icons animate">
+    <ul *ngIf="!hideIcons" class="list-inline text-center member-icons animate">
       <li class="list-inline-item">
         <button
           class="btn btn-primary btn-sm"
@@ -28,7 +28,7 @@
   </div>
   <div class="card-body p-2">
     <h4>{{ property.Name }}</h4>
-    <h5>{{ property.Type }}</h5>
-    <h4>{{ property.Price }}</h4>
+    <h6>Type: {{ property.Type }}</h6>
+    <h5>Price: ${{ property.Price }}</h5>
   </div>
 </div>
