@@ -31,7 +31,12 @@
 
                 <div class="form-group col-12">
                   <p>Bedrooms</p>
-                  <div class="btn-group" btnRadioGroup>
+                  <div
+                    class="btn-group"
+                    btnRadioGroup
+                    name="bedroom"
+                    [(ngModel)]="propertyView.Bedroom"
+                  >
                     <label
                       *ngFor="let bedroom of [1, 2, 3, 4, 5]"
                       class="btn btn-outline-primary mr-2"
@@ -46,7 +51,12 @@
 
                 <div class="form-group col-12">
                   <p>Bathrooms</p>
-                  <div class="btn-group" btnRadioGroup>
+                  <div
+                    class="btn-group"
+                    btnRadioGroup
+                    name="bathroom"
+                    [(ngModel)]="propertyView.Bathroom"
+                  >
                     <label
                       *ngFor="let bathroom of [1, 2, 3, 4, 5]"
                       class="btn btn-outline-primary mr-2"
@@ -61,7 +71,12 @@
 
                 <div class="form-group col-12">
                   <p>Parking Spaces</p>
-                  <div class="btn-group" btnRadioGroup>
+                  <div
+                    class="btn-group"
+                    btnRadioGroup
+                    name="parking"
+                    [(ngModel)]="propertyView.Parking"
+                  >
                     <label
                       *ngFor="let parking of [0, 1, 2, 3, 4]"
                       class="btn btn-outline-primary mr-2"
@@ -80,7 +95,7 @@
                     class="btn-group"
                     btnRadioGroup
                     name="propType"
-                    [(ngModel)]="propertyView.Type"
+                    [(ngModel)]="propertyView.PType"
                   >
                     <label
                       *ngFor="let ptype of propertyTypes"
@@ -96,7 +111,12 @@
 
                 <div class="form-group col-12">
                   <p>Furnish Type</p>
-                  <div class="btn-group" btnRadioGroup>
+                  <div
+                    class="btn-group"
+                    btnRadioGroup
+                    name="furnishType"
+                    [(ngModel)]="propertyView.FType"
+                  >
                     <label
                       *ngFor="let ftype of furnishTypes"
                       class="btn btn-outline-primary mr-2"
@@ -110,16 +130,38 @@
                 </div>
 
                 <div class="form-group col-12">
-                  <label>Name</label>
+                  <button
+                    type="button"
+                    class="btn btn-primary float-right"
+                    (click)="selectTab(1)"
+                  >
+                    Next
+                  </button>
+                </div>
+              </tab>
+
+              <tab heading="Address">
+                <div class="form-group col-12">
+                  <label>Address</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    name="address"
+                    [(ngModel)]="propertyView.Address"
+                  />
+                </div>
+
+                <div class="form-group col-12">
+                  <label>Suburb</label>
                   <input
                     type="text"
                     class="form-control"
                     #propName="ngModel"
                     ngModel
-                    name="Name"
+                    name="suburb"
                     required
                     minlength="5"
-                    [(ngModel)]="propertyView.Name"
+                    [(ngModel)]="propertyView.Suburb"
                   />
                   <span
                     *ngIf="!propName.valid && propName.touched"
@@ -136,14 +178,26 @@
 
                 <div class="form-group col-12">
                   <label>City</label>
-                  <input type="text" class="form-control" />
+                  <input
+                    type="text"
+                    class="form-control"
+                    name="city"
+                    [(ngModel)]="propertyView.City"
+                  />
                 </div>
 
                 <div class="form-group col-12">
                   <button
                     type="button"
+                    class="btn btn-primary float-left"
+                    (click)="selectTab(0)"
+                  >
+                    Back
+                  </button>
+                  <button
+                    type="button"
                     class="btn btn-primary float-right"
-                    (click)="selectTab(1)"
+                    (click)="selectTab(2)"
                   >
                     Next
                   </button>
@@ -175,45 +229,6 @@
                   <button
                     type="button"
                     class="btn btn-primary float-left"
-                    (click)="selectTab(0)"
-                  >
-                    Back
-                  </button>
-                  <button
-                    type="button"
-                    class="btn btn-primary float-right"
-                    (click)="selectTab(2)"
-                  >
-                    Next
-                  </button>
-                </div>
-              </tab>
-
-              <tab heading="Address">
-                <div class="form-group col-12">
-                  <label>Floor</label>
-                  <input type="text" class="form-control" />
-                </div>
-
-                <div class="form-group col-12">
-                  <label>Total Floor</label>
-                  <input type="text" class="form-control" />
-                </div>
-
-                <div class="form-group col-12">
-                  <label>Address</label>
-                  <input type="text" class="form-control" />
-                </div>
-
-                <div class="form-group col-12">
-                  <label>Landmark</label>
-                  <input type="text" class="form-control" />
-                </div>
-
-                <div class="form-group col-12">
-                  <button
-                    type="button"
-                    class="btn btn-primary float-left"
                     (click)="selectTab(1)"
                   >
                     Back
@@ -229,62 +244,20 @@
               </tab>
 
               <tab heading="Other Details">
-                <div class="form-group col-12">
-                  <p>Ready to Move</p>
-                  <div class="btn-group" btnRadioGroup>
-                    <label
-                      class="btn btn-outline-primary mr-2"
-                      btnRadio="1"
-                      tabindex="0"
-                      role="button"
-                      name="RTM"
-                      >Yes</label
-                    >
-                    <label
-                      class="btn btn-outline-primary"
-                      btnRadio="2"
-                      tabindex="0"
-                      role="button"
-                      name="RTM"
-                      >No</label
-                    >
+                <div class="form-group row col-12">
+                  <div class="col-6">
+                    <label>Available From</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      bsDatepicker
+                      [bsConfig]="{ containerClass: 'theme-dark-blue' }"
+                    />
                   </div>
-                </div>
 
-                <div class="form-group col-5">
-                  <label>Possession/Available From</label>
-                  <input
-                    type="text"
-                    class="form-control"
-                    bsDatepicker
-                    [bsConfig]="{ containerClass: 'theme-dark-blue' }"
-                  />
-                </div>
-
-                <div class="form-group col-12">
-                  <label>Age of Property</label>
-                  <input type="text" class="form-control" />
-                </div>
-
-                <div class="form-group col-12">
-                  <p>Gated Community</p>
-                  <div class="btn-group" btnRadioGroup>
-                    <label
-                      class="btn btn-outline-primary mr-2"
-                      btnRadio="1"
-                      tabindex="0"
-                      role="button"
-                      name="Gated"
-                      >Yes</label
-                    >
-                    <label
-                      class="btn btn-outline-primary"
-                      btnRadio="2"
-                      tabindex="0"
-                      role="button"
-                      name="Gated"
-                      >No</label
-                    >
+                  <div class="col-6">
+                    <label>Age of Property</label>
+                    <input type="number" class="form-control" />
                   </div>
                 </div>
 
@@ -293,7 +266,7 @@
                   <textarea
                     type="text"
                     class="form-control"
-                    rows="=5"
+                    rows="10"
                   ></textarea>
                 </div>
 

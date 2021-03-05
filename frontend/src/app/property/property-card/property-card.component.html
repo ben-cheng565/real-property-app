@@ -27,8 +27,22 @@
     </ul>
   </div>
   <div class="card-body p-2">
-    <h4>{{ property.Name }}</h4>
-    <h6>Type: {{ property.Type }}</h6>
-    <h5>Price: ${{ property.Price }}</h5>
+    <h4 class="mb-0">{{ property.Address }}</h4>
+    <span *ngIf="property.Suburb"
+      >{{ property.Suburb }}, {{ property.City }}</span
+    ><br />
+
+    <div class="mt-1 mb-1">
+      <i class="fas fa-bed"></i> {{ property.Bedroom }} |
+      <i class="fas fa-bath"></i> {{ property.Bathroom }} |
+      <i class="fas fa-parking"></i> {{ property.Parking }}
+    </div>
+
+    <!-- <h6 class="mt-1">
+      {{ property.PType }} | {{ property.FType }}
+      <span *ngIf="property.FType !== 'Unfurnished'">Furnished</span>
+    </h6> -->
+
+    <h6 class="mb-0">Price: ${{ property.Price }}</h6>
   </div>
 </div>
