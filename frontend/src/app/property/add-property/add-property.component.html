@@ -3,13 +3,17 @@
     <div class="card">
       <div class="card-header"><h5>List your Property</h5></div>
       <div class="card-body">
-        <form (ngSubmit)="onSubmit(Form)" #Form="ngForm">
+        <form (ngSubmit)="onSubmit()" [formGroup]="addPropertyForm">
           <div class="card-panel">
             <tabset class="member-tabset" #formTabs>
-              <tab heading="Basic Info">
+              <tab heading="Basic Info" formGroupName="BasicInfo">
                 <div class="form-group col-12">
-                  <p>I want to</p>
-                  <div class="btn-group" btnRadioGroup>
+                  <p>I want to<span class="red-star">*</span></p>
+                  <div
+                    class="btn-group"
+                    btnRadioGroup
+                    formControlName="sellrent"
+                  >
                     <label
                       class="btn btn-outline-primary mr-2"
                       btnRadio="1"
@@ -30,11 +34,11 @@
                 </div>
 
                 <div class="form-group col-12">
-                  <p>Bedrooms</p>
+                  <p>Bedrooms<span class="red-star">*</span></p>
                   <div
                     class="btn-group"
                     btnRadioGroup
-                    name="bedroom"
+                    formControlName="bedroom"
                     [(ngModel)]="propertyView.Bedroom"
                   >
                     <label
@@ -50,11 +54,11 @@
                 </div>
 
                 <div class="form-group col-12">
-                  <p>Bathrooms</p>
+                  <p>Bathrooms<span class="red-star">*</span></p>
                   <div
                     class="btn-group"
                     btnRadioGroup
-                    name="bathroom"
+                    formControlName="bathroom"
                     [(ngModel)]="propertyView.Bathroom"
                   >
                     <label
@@ -70,11 +74,11 @@
                 </div>
 
                 <div class="form-group col-12">
-                  <p>Parking Spaces</p>
+                  <p>Parking Spaces<span class="red-star">*</span></p>
                   <div
                     class="btn-group"
                     btnRadioGroup
-                    name="parking"
+                    formControlName="parking"
                     [(ngModel)]="propertyView.Parking"
                   >
                     <label
@@ -90,11 +94,11 @@
                 </div>
 
                 <div class="form-group col-12">
-                  <p>Property Type</p>
+                  <p>Property Type<span class="red-star">*</span></p>
                   <div
                     class="btn-group"
                     btnRadioGroup
-                    name="propType"
+                    formControlName="propType"
                     [(ngModel)]="propertyView.PType"
                   >
                     <label
@@ -114,7 +118,7 @@
                   <div
                     class="btn-group"
                     btnRadioGroup
-                    name="furnishType"
+                    formControlName="furnishType"
                     [(ngModel)]="propertyView.FType"
                   >
                     <label
@@ -134,54 +138,40 @@
                     type="button"
                     class="btn btn-primary float-right"
                     (click)="selectTab(1)"
+                    [disabled]="!BasicInfo.valid"
                   >
                     Next
                   </button>
                 </div>
               </tab>
 
-              <tab heading="Address">
+              <tab heading="Address" formGroupName="AddressInfo">
                 <div class="form-group col-12">
-                  <label>Address</label>
+                  <label>Address<span class="red-star">*</span></label>
                   <input
                     type="text"
                     class="form-control"
-                    name="address"
+                    formControlName="address"
                     [(ngModel)]="propertyView.Address"
                   />
                 </div>
 
                 <div class="form-group col-12">
-                  <label>Suburb</label>
+                  <label>Suburb<span class="red-star">*</span></label>
                   <input
                     type="text"
                     class="form-control"
-                    #propName="ngModel"
-                    ngModel
-                    name="suburb"
-                    required
-                    minlength="5"
+                    formControlName="suburb"
                     [(ngModel)]="propertyView.Suburb"
                   />
-                  <span
-                    *ngIf="!propName.valid && propName.touched"
-                    class="error-block"
-                  >
-                    <span *ngIf="propName.errors.required"
-                      >Please enter name</span
-                    >
-                    <span *ngIf="propName.errors.minlength"
-                      >Name must be at least 5 characters</span
-                    >
-                  </span>
                 </div>
 
                 <div class="form-group col-12">
-                  <label>City</label>
+                  <label>City<span class="red-star">*</span></label>
                   <input
                     type="text"
                     class="form-control"
-                    name="city"
+                    formControlName="city"
                     [(ngModel)]="propertyView.City"
                   />
                 </div>
@@ -198,31 +188,45 @@
                     type="button"
                     class="btn btn-primary float-right"
                     (click)="selectTab(2)"
+                    [disabled]="!AddressInfo.valid"
                   >
                     Next
                   </button>
                 </div>
               </tab>
 
-              <tab heading="Price and Area">
+              <tab heading="Price and Area" formGroupName="PriceInfo">
                 <div class="form-group col-12">
-                  <label>Price</label>
+                  <label *ngIf="SellRent.value == 1"
+                    >Price<span class="red-star">*</span></label
+                  >
+                  <label *ngIf="SellRent.value == 2"
+                    >Rent (per week)<span class="red-star">*</span></label
+                  >
                   <input
                     type="number"
                     class="form-control"
-                    name="price"
+                    formControlName="price"
                     [(ngModel)]="propertyView.Price"
                   />
                 </div>
 
                 <div class="form-group col-12">
                   <label>Building Area (&#13217;)</label>
-                  <input type="number" class="form-control" />
+                  <input
+                    type="number"
+                    class="form-control"
+                    formControlName="buildArea"
+                  />
                 </div>
 
                 <div class="form-group col-12">
                   <label>Land Area (&#13217;)</label>
-                  <input type="number" class="form-control" />
+                  <input
+                    type="number"
+                    class="form-control"
+                    formControlName="landArea"
+                  />
                 </div>
 
                 <div class="form-group col-12">
@@ -237,19 +241,21 @@
                     type="button"
                     class="btn btn-primary float-right"
                     (click)="selectTab(3)"
+                    [disabled]="!PriceInfo.valid"
                   >
                     Next
                   </button>
                 </div>
               </tab>
 
-              <tab heading="Other Details">
+              <tab heading="Other Details" formGroupName="OtherInfo">
                 <div class="form-group row col-12">
                   <div class="col-6">
                     <label>Available From</label>
                     <input
                       type="text"
                       class="form-control"
+                      formControlName="availableFrom"
                       bsDatepicker
                       [bsConfig]="{ containerClass: 'theme-dark-blue' }"
                     />
@@ -257,7 +263,11 @@
 
                   <div class="col-6">
                     <label>Age of Property</label>
-                    <input type="number" class="form-control" />
+                    <input
+                      type="number"
+                      class="form-control"
+                      formControlName="age"
+                    />
                   </div>
                 </div>
 
@@ -266,6 +276,7 @@
                   <textarea
                     type="text"
                     class="form-control"
+                    formControlName="description"
                     rows="10"
                   ></textarea>
                 </div>
