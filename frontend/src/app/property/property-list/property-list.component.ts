@@ -9,7 +9,7 @@ import { HousingService } from 'src/app/service/housing.service';
   styleUrls: ['./property-list.component.css'],
 })
 export class PropertyListComponent implements OnInit {
-  properties: Array<IPropertyBase>;
+  properties: IPropertyBase[];
   SellOrRent = 1;
 
   constructor(
@@ -25,10 +25,17 @@ export class PropertyListComponent implements OnInit {
     this.housingService.getAllProperties(this.SellOrRent).subscribe(
       (data) => {
         this.properties = data;
+
+        const newProp = JSON.parse(localStorage.getItem('newProperty'));
+        if (newProp && newProp.SellOrRent === this.SellOrRent) {
+          this.properties.push(newProp);
+        }
       },
       (error) => {
         console.log(error);
       }
     );
+
+    console.log(this.properties);
   }
 }

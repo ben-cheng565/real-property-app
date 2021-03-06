@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { IProperty } from 'src/app/model/iproperty';
+import { Property } from 'src/app/model/property';
 import { IPropertyBase } from 'src/app/model/ipropertybase';
 
 @Component({
