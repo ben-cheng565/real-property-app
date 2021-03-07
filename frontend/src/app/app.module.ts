@@ -7,6 +7,7 @@ import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { TabsModule } from 'ngx-bootstrap/tabs';
 import { ButtonsModule } from 'ngx-bootstrap/buttons';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
+import { NgxGalleryModule } from '@kolkov/ngx-gallery';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -55,6 +56,7 @@ const appRoutes: Routes = [
     TabsModule.forRoot(),
     ButtonsModule.forRoot(),
     BsDatepickerModule.forRoot(),
+    NgxGalleryModule,
   ],
   providers: [HousingService, UserService, AlertifyService, AuthService],
   bootstrap: [AppComponent],

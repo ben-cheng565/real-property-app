@@ -21,7 +21,7 @@ export class PropertyListComponent implements OnInit {
     if (this.route.snapshot.url.toString()) {
       this.SellOrRent = 2;
     }
-
+    console.log(this.SellOrRent);
     this.housingService.getAllProperties(this.SellOrRent).subscribe(
       (data) => {
         this.properties = data;

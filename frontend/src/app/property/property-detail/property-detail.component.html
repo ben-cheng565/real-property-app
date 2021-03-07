@@ -1,1 +1,98 @@
-<p>property-detail works!</p>
+<div class="row shadow">
+  <div class="col-sm-12 p-0">
+    <div class="card">
+      <div class="card-img-wrapper">
+        <ngx-gallery
+          [options]="galleryOptions"
+          [images]="galleryImages"
+          class="ngx-gallery"
+        ></ngx-gallery>
+        <!-- <img class="card-img-top" src="assets/image/house-1.jpg" /> -->
+      </div>
+      <div class="card-body">
+        <h2 class="card-title mt-2">
+          {{ property.Address }}, {{ property.Suburb }}, {{ property.City }}
+        </h2>
+
+        <hr />
+        <div class="row h5">
+          <div class="col-sm-2">
+            <i class="fas fa-bed"></i> {{ property.Bedroom }}
+          </div>
+          <div class="col-sm-2">
+            <i class="fas fa-bath"></i> {{ property.Bathroom }}
+          </div>
+          <div class="col-sm-2">
+            <i class="fas fa-parking"></i> {{ property.Parking }}
+          </div>
+        </div>
+        <hr />
+        <div>
+          <h3 class="my-4">Property Details</h3>
+          <div class="row my-3">
+            <div class="col-sm-4">
+              <strong>Price:</strong> ${{ property.Price }}
+            </div>
+            <div class="col-sm-4"><strong>Posted Time:</strong> 2020-10-12</div>
+          </div>
+          <div class="row my-3">
+            <div class="col-sm-4">
+              <strong>Property Type:</strong> {{ property.PType }}
+            </div>
+            <div class="col-sm-4">
+              <strong>Furnishing Type:</strong> {{ property.FType }}
+            </div>
+          </div>
+          <div class="row my-3">
+            <div class="col-sm-4">
+              <strong>Building Area:</strong> {{ property.BuildArea }} &#13217;
+            </div>
+            <div class="col-sm-4">
+              <strong>Land Area:</strong> {{ property.LandArea }} &#13217;
+            </div>
+          </div>
+          <div class="row my-3">
+            <div class="col-sm-4">
+              <strong>Bedrooms:</strong> {{ property.Bedroom }}
+            </div>
+            <div class="col-sm-4">
+              <strong>Bathrooms:</strong> {{ property.Bathroom }}
+            </div>
+          </div>
+          <div class="row my-3">
+            <div class="col-sm-8">
+              <strong>Location:</strong> {{ property.Address }},
+              {{ property.Suburb }}, {{ property.City }}
+            </div>
+          </div>
+        </div>
+        <div class="mt-2">
+          <h5 class="py-2">Description</h5>
+          <div class="col-sm-8 p-0 my-3">
+            <p>Calling all Developers and Investors!!</p>
+            <p>
+              In the fast-growing area, zoned "Residential - Mixed Housing
+              Suburban", this large residential site of 4.6235Ha (Approximately
+              11.425 Acres) gives a great opportunity for the Developers and
+              Investors to secure their huge future benefit. This place is
+              conveniently located, close proximity to massive North West and
+              Westgate Shopping Centre and easy motorway access to both Auckland
+              City and North Shore bound. Popular St Paul's School and Massey
+              High School are within walking distance.
+            </p>
+            <p>
+              This tidy and solid 2-bedroom home (Town water supply) will be
+              good to live or rent. Motivated overseas vendor wants this place
+              sold.
+            </p>
+            <p>
+              Don't miss out on your fantastic chance to purchase this very
+              attractive large residential property situated in a rapidly
+              growing area.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
