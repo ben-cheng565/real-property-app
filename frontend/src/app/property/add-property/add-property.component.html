@@ -147,6 +147,25 @@
 
               <tab heading="Address" formGroupName="AddressInfo">
                 <div class="form-group col-12">
+                  <label
+                    >Search Your Property Location<span class="red-star"
+                      >*</span
+                    ></label
+                  >
+                  <input
+                    id="googlePlace"
+                    type="text"
+                    class="form-control"
+                    ngx-google-places-autocomplete
+                    (onAddressChange)="handleAddressChange($event)"
+                    [options]="options"
+                    #placesRef="ngx-places"
+                    formControlName="place"
+                    [(ngModel)]="searchedAddress"
+                  />
+                </div>
+
+                <div class="form-group col-12">
                   <label>Address<span class="red-star">*</span></label>
                   <input
                     type="text"
@@ -157,7 +176,7 @@
                 </div>
 
                 <div class="form-group col-12">
-                  <label>Suburb<span class="red-star">*</span></label>
+                  <label>Suburb</label>
                   <input
                     type="text"
                     class="form-control"
@@ -184,6 +203,7 @@
                   >
                     Back
                   </button>
+
                   <button
                     type="button"
                     class="btn btn-primary float-right"

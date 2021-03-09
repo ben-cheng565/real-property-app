@@ -44,6 +44,14 @@ export class AddPropertyComponent implements OnInit {
     City: '',
   };
 
+  searchedAddress: string;
+
+  options = {
+    componentRestrictions: {
+      country: ['NZ'],
+    },
+  };
+
   constructor(
     private router: Router,
     private fb: FormBuilder,
@@ -66,9 +74,10 @@ export class AddPropertyComponent implements OnInit {
         furnishType: [null],
       }),
       AddressInfo: this.fb.group({
-        address: ['', Validators.required],
-        suburb: ['', Validators.required],
-        city: ['', Validators.required],
+        place: ['', Validators.required],
+        address: [{ value: '', disabled: true }, , Validators.required],
+        suburb: [{ value: '', disabled: true }],
+        city: [{ value: '', disabled: true }, , Validators.required],
       }),
       PriceInfo: this.fb.group({
         price: [null, Validators.required],
@@ -188,6 +197,28 @@ export class AddPropertyComponent implements OnInit {
       this.router.navigate(['/rent-property']);
     } else {
       this.router.navigate(['/']);
+    }
+  }
+
+  public handleAddressChange(address: any) {
+    // Do some stuff
+    this.searchedAddress = (document.getElementById(
+      'googlePlace'
+    ) as HTMLInputElement).value;
+    console.log(this.searchedAddress);
+
+    // let addr: string =  address.formatted_address;
+    // Convert address string into an array,
+    // and extract different values
+    let array = this.searchedAddress.split(', ');
+    if (array.length === 4) {
+      this.propertyView.Address = array[0];
+      this.propertyView.Suburb = array[1];
+      this.propertyView.City = array[2];
+    } else if (array.length === 3) {
+      this.propertyView.Address = array[0];
+      // this.propertyView.Suburb = array[1];
+      this.propertyView.City = array[1];
     }
   }
 }

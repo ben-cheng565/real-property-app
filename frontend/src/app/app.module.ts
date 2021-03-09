@@ -23,6 +23,9 @@ import { UserSignupComponent } from './user/user-signup/user-signup.component';
 import { UserService } from './service/user.service';
 import { AlertifyService } from './service/alertify.service';
 import { AuthService } from './service/auth.service';
+import { AgmCoreModule } from '@agm/core';
+import { GooglemapsService } from './service/googlemaps.service';
+import { GooglePlaceModule } from 'ngx-google-places-autocomplete';
 
 const appRoutes: Routes = [
   { path: '', component: PropertyListComponent },
@@ -57,8 +60,20 @@ const appRoutes: Routes = [
     ButtonsModule.forRoot(),
     BsDatepickerModule.forRoot(),
     NgxGalleryModule,
+    AgmCoreModule.forRoot({
+      // please get your own API key here:
+      // https://developers.google.com/maps/documentation/javascript/get-api-key?hl=en
+      apiKey: 'AIzaSyBHcrX3t_GV0v-CTxWw1gKAaQRbGIl02js',
+    }),
+    GooglePlaceModule,
   ],
-  providers: [HousingService, UserService, AlertifyService, AuthService],
+  providers: [
+    HousingService,
+    UserService,
+    AlertifyService,
+    AuthService,
+    GooglemapsService,
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
