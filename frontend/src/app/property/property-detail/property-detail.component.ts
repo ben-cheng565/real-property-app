@@ -1,9 +1,13 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgxGalleryOptions } from '@kolkov/ngx-gallery';
 import { NgxGalleryImage } from '@kolkov/ngx-gallery';
 import { NgxGalleryAnimation } from '@kolkov/ngx-gallery';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 import { Property } from 'src/app/model/property';
+import { GooglemapsService } from 'src/app/service/googlemaps.service';
 import { HousingService } from 'src/app/service/housing.service';
 
 @Component({
@@ -16,11 +20,14 @@ export class PropertyDetailComponent implements OnInit {
   property = new Property();
   galleryOptions: NgxGalleryOptions[];
   galleryImages: NgxGalleryImage[];
+  latitude: number;
+  longitude: number;
 
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private housingService: HousingService
+    private housingService: HousingService,
+    private map: GooglemapsService
   ) {}
 
   ngOnInit(): void {
@@ -69,5 +76,23 @@ export class PropertyDetailComponent implements OnInit {
         big: 'assets/image/4zxma.jpg',
       },
     ];
+
+    // Get location info by an address
+    this.getLocation();
+  }
+
+  getLocation() {
+    this.map
+      .addressGeocode('22 Nelson St, Auckland Central, Auckland')
+      .subscribe(
+        (data: any) => (
+          // (this.latitude = data.results[0].geometry.location),
+          // console.log(data.results[0].geometry.location),
+          (this.latitude = data.results[0].geometry.location.lat),
+          (this.longitude = data.results[0].geometry.location.lng)
+        ),
+        (err: any) => console.log(err),
+        () => console.log('All done getting location.')
+      );
   }
 }

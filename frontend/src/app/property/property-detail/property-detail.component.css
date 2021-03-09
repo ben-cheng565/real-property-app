@@ -2,3 +2,11 @@
   display: inline-block;
   margin-bottom: 20px;
 }
+
+.horizontial-line {
+  border-color: rgb(130, 193, 214);
+}
+
+agm-map {
+  height: 400px;
+}

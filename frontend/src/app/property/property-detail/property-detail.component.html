@@ -1,6 +1,6 @@
 <div class="row shadow">
   <div class="col-sm-12 p-0">
-    <div class="card">
+    <div class="card mb-4">
       <div class="card-img-wrapper">
         <ngx-gallery
           [options]="galleryOptions"
@@ -14,8 +14,8 @@
           {{ property.Address }}, {{ property.Suburb }}, {{ property.City }}
         </h2>
 
-        <hr />
-        <div class="row h5">
+        <hr class="horizontial-line" />
+        <div class="row h5 align-items-center">
           <div class="col-sm-2">
             <i class="fas fa-bed"></i> {{ property.Bedroom }}
           </div>
@@ -25,8 +25,16 @@
           <div class="col-sm-2">
             <i class="fas fa-parking"></i> {{ property.Parking }}
           </div>
+          <div class="col-sm-6">
+            <button class="btn btn-outline-success float-right">
+              <i class="far fa-envelope"> Email</i>
+            </button>
+            <button class="btn btn-outline-danger float-right mr-2">
+              <i class="far fa-heart"> Save</i>
+            </button>
+          </div>
         </div>
-        <hr />
+        <hr class="horizontial-line" />
         <div>
           <h3 class="my-4">Property Details</h3>
           <div class="row my-3">
@@ -91,6 +99,19 @@
               growing area.
             </p>
           </div>
+        </div>
+        <div class="py-5">
+          <agm-map
+            [latitude]="latitude"
+            [longitude]="longitude"
+            [zoom]="18"
+            [disableDefaultUI]="false"
+          >
+            <agm-marker
+              [latitude]="latitude"
+              [longitude]="longitude"
+            ></agm-marker>
+          </agm-map>
         </div>
       </div>
     </div>
