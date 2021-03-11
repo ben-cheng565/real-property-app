@@ -25,9 +25,10 @@ export class HousingService {
       map((data) => {
         const propertyArray: Array<IPropertyBase> = [];
         const localProperties = JSON.parse(localStorage.getItem('newProperty'));
-
+        console.log(localProperties);
         if (localProperties) {
           for (const id in localProperties) {
+            console.log(id);
             if (SellOrRent) {
               if (
                 localProperties.hasOwnProperty(id) &&
@@ -59,6 +60,13 @@ export class HousingService {
   }
 
   addProperty(property: Property) {
-    localStorage.setItem('newProperty', JSON.stringify(property));
+    let newProp = [property];
+
+    // Add new property in array if newProp alreay exists in local storage
+    if (localStorage.getItem('newProperty')) {
+      newProp = [property, ...JSON.parse(localStorage.getItem('newProperty'))];
+    }
+
+    localStorage.setItem('newProperty', JSON.stringify(newProp));
   }
 }

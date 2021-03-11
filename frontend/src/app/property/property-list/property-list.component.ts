@@ -26,10 +26,7 @@ export class PropertyListComponent implements OnInit {
       (data) => {
         this.properties = data;
 
-        const newProp = JSON.parse(localStorage.getItem('newProperty'));
-        if (newProp && newProp.SellOrRent === this.SellOrRent) {
-          this.properties.push(newProp);
-        }
+        console.log(data);
       },
       (error) => {
         console.log(error);
