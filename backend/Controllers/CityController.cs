@@ -1,11 +1,8 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
+
 using System.Threading.Tasks;
-using backend.Data;
+using backend.Data.Repo;
 using backend.Models;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 
 namespace Namespace
 {
@@ -13,16 +10,16 @@ namespace Namespace
     [ApiController]
     public class CityController : ControllerBase
     {
-        private readonly DataContext _dc;
-        public CityController(DataContext dc)
+        private readonly ICityRepo cr;
+        public CityController(ICityRepo cr)
         {
-            this._dc = dc;
+            this.cr = cr;
         }
 
         [HttpGet]
         public async Task<ActionResult> Get()
         {
-            var cities = await _dc.Cities.ToListAsync();
+            var cities = await cr.GetCitiesAsync();
             return Ok(cities);
             // return new string[] { "value1", "value2" };
         }
@@ -30,44 +27,30 @@ namespace Namespace
         [HttpGet("{id}")]
         public async Task<ActionResult> Get(int id)
         {
-            var city = await _dc.Cities.FindAsync(id);
+            var city = await cr.GetCityAsync(id);
 
             return Ok(city);
         }
 
         [HttpPost]
-        public async Task<ActionResult> AddCity(string cityName)
+        public async Task<ActionResult> AddCity(City city)
         {
-            City city = new City();
-            city.Name = cityName;
-            await _dc.Cities.AddAsync(city);
-            await _dc.SaveChangesAsync();
+            
+            cr.AddCity(city);
+            await cr.SaveAsync();
 
-            return Ok(city);
+            return StatusCode(201);
         }
 
-        [HttpPut("{id}")]
-        public async Task<ActionResult> UpdateCity(string cityName)
-        {
-            City city = new City();
-            _dc.Cities.Update(city);
-            await _dc.SaveChangesAsync();
-            return Ok();
-        }
+        
 
         [HttpDelete("{id}")]
         public async Task<ActionResult> Delete(int id)
         {
-            City city = await _dc.Cities.FindAsync(id);
-            if(city != null) {
-                _dc.Cities.Remove(city);
-                await _dc.SaveChangesAsync();
-            } else {
-                Console.WriteLine("City does not exist.");
-                return StatusCode(404);
-            }
-            return Ok(id);
+            cr.DeleteCity(id);
+            await cr.SaveAsync();
 
+            return StatusCode(200);
         }
     }
 }
