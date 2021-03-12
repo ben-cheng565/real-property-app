@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using backend.Interface;
 using backend.Models;
 using Microsoft.EntityFrameworkCore;
 
@@ -34,9 +35,6 @@ namespace backend.Data.Repo
             return city;
         }
 
-        public async Task<bool> SaveAsync()
-        {
-            return await dc.SaveChangesAsync() > 0;
-        }
+        
     }
 }

@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using backend.Models;
 
-namespace backend.Data.Repo
+namespace backend.Interface
 {
     public interface ICityRepo
     {
@@ -10,6 +10,6 @@ namespace backend.Data.Repo
          Task<City> GetCityAsync(int cityId);
          void AddCity(City city);
          void DeleteCity(int cityId);
-         Task<bool> SaveAsync();
+         
     }
 }

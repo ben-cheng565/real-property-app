@@ -1,6 +1,8 @@
 
 using System.Threading.Tasks;
 using backend.Data.Repo;
+using backend.Interface;
+using backend.Interfaces;
 using backend.Models;
 using Microsoft.AspNetCore.Mvc;
 
@@ -10,16 +12,17 @@ namespace Namespace
     [ApiController]
     public class CityController : ControllerBase
     {
-        private readonly ICityRepo cr;
-        public CityController(ICityRepo cr)
+        private readonly IUnitOfWork uow;
+
+        public CityController(IUnitOfWork uow)
         {
-            this.cr = cr;
+            this.uow = uow;
         }
 
         [HttpGet]
         public async Task<ActionResult> Get()
         {
-            var cities = await cr.GetCitiesAsync();
+            var cities = await uow.CityRepo.GetCitiesAsync();
             return Ok(cities);
             // return new string[] { "value1", "value2" };
         }
@@ -27,7 +30,7 @@ namespace Namespace
         [HttpGet("{id}")]
         public async Task<ActionResult> Get(int id)
         {
-            var city = await cr.GetCityAsync(id);
+            var city = await uow.CityRepo.GetCityAsync(id);
 
             return Ok(city);
         }
@@ -36,8 +39,8 @@ namespace Namespace
         public async Task<ActionResult> AddCity(City city)
         {
             
-            cr.AddCity(city);
-            await cr.SaveAsync();
+            uow.CityRepo.AddCity(city);
+            await uow.SaveAsync();
 
             return StatusCode(201);
         }
@@ -47,8 +50,8 @@ namespace Namespace
         [HttpDelete("{id}")]
         public async Task<ActionResult> Delete(int id)
         {
-            cr.DeleteCity(id);
-            await cr.SaveAsync();
+            uow.CityRepo.DeleteCity(id);
+            await uow.SaveAsync();
 
             return StatusCode(200);
         }
