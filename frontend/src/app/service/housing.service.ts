@@ -25,10 +25,9 @@ export class HousingService {
       map((data) => {
         const propertyArray: Array<IPropertyBase> = [];
         const localProperties = JSON.parse(localStorage.getItem('newProperty'));
-        console.log(localProperties);
+
         if (localProperties) {
           for (const id in localProperties) {
-            console.log(id);
             if (SellOrRent) {
               if (
                 localProperties.hasOwnProperty(id) &&
@@ -68,5 +67,9 @@ export class HousingService {
     }
 
     localStorage.setItem('newProperty', JSON.stringify(newProp));
+  }
+
+  getCities(): Observable<string[]> {
+    return this.http.get<string[]>('http://localhost:5000/api/city');
   }
 }
