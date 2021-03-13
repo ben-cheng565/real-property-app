@@ -69,6 +69,16 @@ export class HousingService {
     localStorage.setItem('newProperty', JSON.stringify(newProp));
   }
 
+  newPropID() {
+    if (localStorage.getItem('PID')) {
+      localStorage.setItem('PID', String(+localStorage.getItem('PID') + 1));
+      return +localStorage.getItem('PID');
+    } else {
+      localStorage.setItem('PID', '101');
+      return 101;
+    }
+  }
+
   getCities(): Observable<string[]> {
     return this.http.get<string[]>('http://localhost:5000/api/city');
   }

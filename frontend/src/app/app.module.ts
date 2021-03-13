@@ -8,6 +8,7 @@ import { TabsModule } from 'ngx-bootstrap/tabs';
 import { ButtonsModule } from 'ngx-bootstrap/buttons';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { NgxGalleryModule } from '@kolkov/ngx-gallery';
+import { NgxUploadModule } from '@wkoza/ngx-upload';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -66,6 +67,7 @@ const appRoutes: Routes = [
       apiKey: 'AIzaSyBHcrX3t_GV0v-CTxWw1gKAaQRbGIl02js',
     }),
     GooglePlaceModule,
+    NgxUploadModule.forRoot(),
   ],
   providers: [
     HousingService,

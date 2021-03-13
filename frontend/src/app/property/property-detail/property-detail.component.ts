@@ -37,6 +37,15 @@ export class PropertyDetailComponent implements OnInit {
       this.id = +params['id'];
       this.housingService.getProperty(this.id).subscribe((data: Property) => {
         this.property = data;
+
+        // Get location info by an address
+        this.getLocation(
+          this.property.Address +
+            ', ' +
+            this.property.Suburb +
+            ', ' +
+            this.property.City
+        );
       });
     });
 
@@ -76,23 +85,18 @@ export class PropertyDetailComponent implements OnInit {
         big: 'assets/image/4zxma.jpg',
       },
     ];
-
-    // Get location info by an address
-    this.getLocation();
   }
 
-  getLocation() {
-    this.map
-      .addressGeocode('22 Nelson St, Auckland Central, Auckland')
-      .subscribe(
-        (data: any) => (
-          // (this.latitude = data.results[0].geometry.location),
-          // console.log(data.results[0].geometry.location),
-          (this.latitude = data.results[0].geometry.location.lat),
-          (this.longitude = data.results[0].geometry.location.lng)
-        ),
-        (err: any) => console.log(err),
-        () => console.log('All done getting location.')
-      );
+  getLocation(address: string) {
+    this.map.addressGeocode(address).subscribe(
+      (data: any) => (
+        // (this.latitude = data.results[0].geometry.location),
+        // console.log(data.results[0].geometry.location),
+        (this.latitude = data.results[0].geometry.location.lat),
+        (this.longitude = data.results[0].geometry.location.lng)
+      ),
+      (err: any) => console.log(err),
+      () => console.log('All done getting location.')
+    );
   }
 }
