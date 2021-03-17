@@ -8,6 +8,7 @@ import { IPropertyBase } from 'src/app/model/ipropertybase';
   styleUrls: ['property-card.component.css'],
 })
 export class PropertyCardComponent {
+  // get property info from parent component
   @Input() property: IPropertyBase;
   @Input() hideIcons: boolean;
 }

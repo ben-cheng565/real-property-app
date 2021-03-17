@@ -7,6 +7,7 @@ import { User } from '../model/user';
 export class UserService {
   constructor() {}
 
+  // add user info to local storage
   addUserToLocalStorage(user: User) {
     let users = [];
     if (localStorage.getItem('Users')) {

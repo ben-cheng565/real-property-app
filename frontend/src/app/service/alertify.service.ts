@@ -7,6 +7,7 @@ import * as alertify from 'alertifyjs';
 export class AlertifyService {
   constructor() {}
 
+  // create different alert boxes
   success(message: string) {
     alertify.success(message);
   }

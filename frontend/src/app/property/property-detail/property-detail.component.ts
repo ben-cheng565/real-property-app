@@ -18,6 +18,7 @@ import { HousingService } from 'src/app/service/housing.service';
 export class PropertyDetailComponent implements OnInit {
   public id: number;
   property = new Property();
+  // use ngx-gallery to display all photos
   galleryOptions: NgxGalleryOptions[];
   galleryImages: NgxGalleryImage[];
   latitude: number;
@@ -31,8 +32,10 @@ export class PropertyDetailComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    // get property id from url
     this.id = this.route.snapshot.params['id'];
 
+    //
     this.route.params.subscribe((params) => {
       this.id = +params['id'];
       this.housingService.getProperty(this.id).subscribe((data: Property) => {

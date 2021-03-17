@@ -62,8 +62,7 @@ const appRoutes: Routes = [
     BsDatepickerModule.forRoot(),
     NgxGalleryModule,
     AgmCoreModule.forRoot({
-      // please get your own API key here:
-      // https://developers.google.com/maps/documentation/javascript/get-api-key?hl=en
+      // api key for Google map
       apiKey: 'AIzaSyBHcrX3t_GV0v-CTxWw1gKAaQRbGIl02js',
     }),
     GooglePlaceModule,

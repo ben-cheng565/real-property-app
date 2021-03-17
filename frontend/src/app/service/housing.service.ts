@@ -12,6 +12,7 @@ import { Property } from '../model/property';
 export class HousingService {
   constructor(private http: HttpClient) {}
 
+  // get a specific property
   getProperty(id: number) {
     return this.getAllProperties().pipe(
       map((properties) => {
@@ -20,6 +21,7 @@ export class HousingService {
     );
   }
 
+  // get all properties list
   getAllProperties(SellOrRent?: number): Observable<IPropertyBase[]> {
     return this.http.get('data/properties.json').pipe(
       map((data) => {
@@ -58,6 +60,7 @@ export class HousingService {
     return this.http.get<IProperty[]>('data/properties.json');
   }
 
+  // add a property
   addProperty(property: Property) {
     let newProp = [property];
 
@@ -69,6 +72,7 @@ export class HousingService {
     localStorage.setItem('newProperty', JSON.stringify(newProp));
   }
 
+  // generate a new property id
   newPropID() {
     if (localStorage.getItem('PID')) {
       localStorage.setItem('PID', String(+localStorage.getItem('PID') + 1));

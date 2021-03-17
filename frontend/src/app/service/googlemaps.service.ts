@@ -8,6 +8,7 @@ import { Observable } from 'rxjs';
 export class GooglemapsService {
   constructor(private http: HttpClient) {}
 
+  // request address geocode from google api, for displaying marker
   addressGeocode(address: string): Observable<any> {
     return this.http.get('https://maps.googleapis.com/maps/api/geocode/json', {
       params: {

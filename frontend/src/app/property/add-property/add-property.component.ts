@@ -67,6 +67,7 @@ export class AddPropertyComponent implements OnInit {
     });
   }
 
+  // create property form using reactive form
   createPropertyForm() {
     this.addPropertyForm = this.fb.group({
       BasicInfo: this.fb.group({
@@ -164,10 +165,12 @@ export class AddPropertyComponent implements OnInit {
     return this.OtherInfo.controls.description as FormControl;
   }
 
+  // active the current tab
   selectTab(tabId: number) {
     this.formTabs.tabs[tabId].active = true;
   }
 
+  // map the form attributes with the model fields
   mapProperty(): void {
     this.property.ID = this.housingService.newPropID();
     this.property.SellOrRent = +this.SellRent.value;
@@ -198,6 +201,7 @@ export class AddPropertyComponent implements OnInit {
     this.housingService.addProperty(this.property);
     this.alertify.success('Property listed successfully');
 
+    // navigate to different pages according to sell or rent value
     if (this.SellRent.value === '2') {
       this.router.navigate(['/rent-property']);
     } else {
@@ -205,6 +209,7 @@ export class AddPropertyComponent implements OnInit {
     }
   }
 
+  // auto compolete the address, and fill in relevant inputs
   public handleAddressChange(address: any) {
     // Do some stuff
     this.searchedAddress = (document.getElementById(
